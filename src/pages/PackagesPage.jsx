@@ -1,16 +1,15 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-const HomePage = () => {
+const PackagesPage = () => {
   return (
     <>
     <Helmet>
-        <title>Home Page</title>
+        <title>Packages</title>
     </Helmet>
-    
-    <div>HomePage</div>
+    <div>PackagesPage</div>
     </>
   )
 }
 
-export default HomePage
+export default PackagesPage
