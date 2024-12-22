@@ -1,76 +1,87 @@
-import React from 'react'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
 
-    const [isMenuOpen, setMenuOpen]=useState(false);
-        const toggleMenu = () =>{
-            setMenuOpen(!isMenuOpen);
-        };
+    const [isMenuOpen, setMenuOpen] = useState(false);
+    const toggleMenu = () => {
+        setMenuOpen(!isMenuOpen);
+    };
 
-  return (
-    <nav className="bg-gray-800">
+    const linkClass = ({ isActive }) => {
+        return isActive
+            ? 'rounded-md bg-sky-500 px-3 py-2 text-sm font-medium text-white'
+            : 'rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-sky-300 hover:text-gray-700';
+    };
+    const mobileLinkClass = ({ isActive }) => {
+        return isActive
+            ? 'block rounded-md bg-sky-500 px-3 py-2 text-base font-medium text-white'
+            : 'block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-sky-300 hover:text-gray-700';
+    };
 
-    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div className="relative flex h-16 items-center justify-between">
+    return (
+        <>
+            <nav className="bg-sky-100">
+                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                    <div className="relative flex h-16 items-center justify-between">
 
-        <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        {/* <!-- Mobile menu button--> */}
-        <button onClick={toggleMenu} type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded={isMenuOpen}>
-            <span className="absolute -inset-0.5"></span>
-            <span className="sr-only">Open main menu</span>
-            {/* <!--
-            Icon when menu is closed.
+                        {/* Logo Section (Paradise Tours) - Left aligned */}
+                        <div className="flex items-center sm:ml-6 sm:block">
+                            <NavLink to='/' className="flex items-center">
+                                {/* Logo Image */}
+                                <img
+                                    src="/src/assets/images/logo.png" // Replace with the actual path to your logo
+                                    alt="Paradise Tours Logo"
+                                    className="h-8 mr-2" // Adjust size of the logo (height 8)
+                                />
+                                <h1 className='text-sky-500 font-bold'>Paradise Tours</h1>
+                            </NavLink>
+                        </div>
 
-            Menu open: "hidden", Menu closed: "block"
-            --> */}
-            <svg className="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-            {/* <!--
-            Icon when menu is open.
+                        {/* Navigation Links - Right aligned on large screens */}
+                        <div className="flex flex-1 items-center justify-end sm:items-stretch sm:justify-end">
+                            <div className="hidden sm:ml-6 sm:block">
+                                <div className="flex space-x-4">
+                                    <NavLink to='/' className={linkClass} aria-current="page">Home</NavLink>
+                                    <NavLink to='/destinations' className={linkClass}>Destinations</NavLink>
+                                    <NavLink to='/packages' className={linkClass}>Packages</NavLink>
+                                    <NavLink to='/blog' className={linkClass}>Blog</NavLink>
+                                    <NavLink to='/contact' className={linkClass}>Contact Us</NavLink>
+                                </div>
+                            </div>
+                        </div>
 
-            Menu open: "block", Menu closed: "hidden"
-            --> */}
-            <svg className="hidden size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-        </button>
-        </div>
+                        {/* Mobile Menu Button - Right aligned in mobile view */}
+                        <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
+                            <button onClick={toggleMenu} type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-sky-700 hover:bg-sky-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded={isMenuOpen}>
+                                <span className="absolute -inset-0.5"></span>
+                                <span className="sr-only">Open main menu</span>
+                                <svg className="block size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                </svg>
+                                <svg className="hidden size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
 
-        <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-        <div className="hidden sm:ml-6 sm:block">
-            <div className="flex space-x-4">
-            {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <Link to="#" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</Link>
-            <Link to="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</Link>
-            <Link to="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</Link>
-            <Link to="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</Link>
-            </div>
-        </div>
-        </div>
+                    </div>
+                </div>
 
-        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <Link to=""><h1 className='text-white font-bold'>Paradise Tours</h1></Link>
-        </div>
+                {/* Mobile menu, show/hide based on menu state */}
+                <div className={`${isMenuOpen ? "block" : "hidden"} sm:hidden`} id="mobile-menu">
+                    <div className="space-y-1 px-2 pb-3 pt-2">
+                        <NavLink to='/' className={mobileLinkClass} aria-current="page">Home</NavLink>
+                        <NavLink to='/destinations' className={mobileLinkClass}>Destinations</NavLink>
+                        <NavLink to='/packages' className={mobileLinkClass}>Packages</NavLink>
+                        <NavLink to='/blog' className={mobileLinkClass}>Blog</NavLink>
+                        <NavLink to='/contact' className={mobileLinkClass}>Contact Us</NavLink>
+                    </div>
+                </div>
 
-    </div>
-    </div>
+            </nav>
+        </>
+    );
+};
 
-    {/* <!-- Mobile menu, show/hide based on menu state. --> */}
-    <div className={`${isMenuOpen ? "block" : "hidden"} sm:hidden`} id="mobile-menu">
-    <div className="space-y-1 px-2 pb-3 pt-2">
-        {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-        <Link to="#" className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</Link>
-        <Link to="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</Link>
-        <Link to="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</Link>
-        <Link to="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</Link>
-    </div>
-    </div>
-
-    </nav>
-  )
-}
-
-export default NavBar
+export default NavBar;

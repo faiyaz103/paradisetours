@@ -1,16 +1,17 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-const HomePage = () => {
+const ContactPage = () => {
   return (
+
     <>
     <Helmet>
-        <title>Home Page</title>
+        <title>Contact us</title>
     </Helmet>
-    
-    <div>HomePage</div>
+    <div>ContactPage</div>
     </>
+
   )
 }
 
-export default HomePage
+export default ContactPage
