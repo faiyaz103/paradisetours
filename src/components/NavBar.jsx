@@ -10,18 +10,18 @@ const NavBar = () => {
 
     const linkClass = ({ isActive }) => {
         return isActive
-            ? 'rounded-md bg-sky-500 px-3 py-2 text-sm font-medium text-white'
-            : 'rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-sky-300 hover:text-gray-700';
+            ? 'bg-sky-500 px-3 py-2 text-sm font-medium text-white'
+            : 'px-3 py-2 text-sm font-medium text-gray-700 hover:bg-sky-300 hover:text-gray-700 hover:shadow-md';
     };
     const mobileLinkClass = ({ isActive }) => {
         return isActive
-            ? 'block rounded-md bg-sky-500 px-3 py-2 text-base font-medium text-white'
-            : 'block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-sky-300 hover:text-gray-700';
+            ? 'block bg-sky-500 px-3 py-2 text-base font-medium text-white'
+            : 'block px-3 py-2 text-base font-medium text-gray-700 hover:bg-sky-300 hover:text-gray-700 hover:shadow-md';
     };
 
     return (
         <>
-            <nav className="bg-sky-100">
+            <nav className="bg-sky-100 sticky top-0 z-50">
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-16 items-center justify-between">
 
